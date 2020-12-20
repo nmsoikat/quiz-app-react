@@ -1,0 +1,24 @@
+h1,
+h2,
+h3,
+p{
+  margin-bottom: 0;
+}
+a{
+  text-decoration: none;
+  color: #000;
+  display: block;
+}
+a:hover{
+  text-decoration: none;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body{
+  font-size: 18px;
+}
+
+@import "./components/App.css"

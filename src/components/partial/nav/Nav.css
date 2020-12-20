@@ -1,0 +1,17 @@
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+nav {
+  display: inline-block;
+}
+nav ul li a {
+  color: #fff;
+  padding: 10px 15px;
+  transition: .3s;
+  border-bottom: 2px solid transparent;
+}
+nav ul li a:hover {
+  color: #000;
+  border-bottom: 2px solid #000;
+}

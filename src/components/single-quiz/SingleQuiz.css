@@ -1,0 +1,47 @@
+.single-quiz {
+  overflow: hidden;
+  padding: 15px;
+  border: 1px solid #37bd62;
+  margin-bottom: 15px;
+  transition: .3s;
+}
+.single-quiz:last-child {
+  margin-bottom: 0;
+}
+.author-profile {
+  float: left;
+  margin-right: 15px;
+}
+.author-profile .profile-img {
+  width: 100px;
+  border-radius: 50%;
+} 
+.quiz-title{
+  color: #288847;
+}
+.quiz-title:hover{
+  text-decoration: none;
+  color: #37bd62;
+}
+.single-quiz:hover{
+  box-shadow: 0px 0px 5px rgb(55, 189, 98);
+}
+.quiz-desc {
+  color: #555;
+  word-spacing: 3px;
+}
+.author-name h3{
+  font-size: 20px;
+  color: #288847;
+}
+.author-name:hover{
+  text-decoration: none;
+  color: #37bd62;
+}
+figure {
+  text-align: center;
+}
+.author-designation {
+  font-size: 16px;
+  color: #777;
+}
