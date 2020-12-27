@@ -1,0 +1,34 @@
+.author-profile {
+  float: left;
+  margin-right: 15px;
+}
+.author-profile .profile-img {
+  width: 100px;
+  border-radius: 50%;
+} 
+.author-name h3{
+  font-size: 20px;
+  color: #288847;
+}
+.author-name:hover{
+  text-decoration: none;
+  color: #37bd62;
+}
+figure {
+  text-align: center;
+}
+.author-designation {
+  font-size: 16px;
+  color: #777;
+}
+
+.profile-detail{
+  display: flex;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+.profile-detail__left {
+  width: 40%;
+}

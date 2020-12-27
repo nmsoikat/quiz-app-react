@@ -1,0 +1,12 @@
+.quiz-title{
+  color: #288847;
+}
+.quiz-title:hover{
+  text-decoration: none;
+  color: #37bd62;
+}
+
+.quiz-desc {
+  color: #555;
+  word-spacing: 3px;
+}

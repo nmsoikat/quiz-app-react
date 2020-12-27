@@ -4,4 +4,8 @@ main{
 
 @import './single-quiz/SingleQuiz.css';
 @import './partial/header/Header.css';
-@import './partial/nav/Nav.css'
+@import './partial/nav/Nav.css';
+@import './author-profile/AuthorProfile.css';
+@import './quiz-desc/Quiz-Desc.css';
+@import './profile/Profile.css';
+@import './create-quiz/CreateQuiz.css'

@@ -1,0 +1,26 @@
+.box-style{
+    border: 1px solid #ddd;
+  padding: 10px;
+}
+.options{
+  display: flex;
+}
+.options .form-group {
+  width: 50%;
+}
+.options__del-icon{
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+  margin-left: 10px;
+}
+.options__add{
+  color: green;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border: 2px solid green;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 34px;
+}

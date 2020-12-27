@@ -1,62 +1,57 @@
 import react from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
+import store from '../class/MyState';
+
 import Header from './partial/header/Header'
 import Footer from './partial/footer/Footer'
 import SingleQuiz from './single-quiz/SingleQuiz'
+import Profile from './profile/Profile'
+import CreateQuiz from './create-quiz/CreateQuiz'
 
 
 class App extends react.Component{
 
-  state = {
-    profile:[
-      { _id:'1', name:'Solim', email: 'solim@gmail.com', password:'12345', picture:''}
-    ],
-    quiz:[
-      {
-        title:"This is first quiz",
-        description: "1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ex, alias reiciendis labore unde excepturi aspernatur velit ipsum quia officia illum aut minus accusamus veritatis quod laboriosam mollitia dolor aliquid?",
-        questions:[
-          {question:"Question 1", options:['option a', 'option b'], answer: 'option a'},
-          {question:"Question 2", options:['option a', 'option b'], answer: 'option a'}
-        ],
-        author: { _id:'1', name:'Solim', designation:'Front-End Developer', email: 'solim@gmail.com', password:'12345', picture:'upload/me.jpg'}
-      },
-      {
-        title:"This is first quiz2",
-        description: "2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ex, alias reiciendis labore unde excepturi aspernatur velit ipsum quia officia illum aut minus accusamus veritatis quod laboriosam mollitia dolor aliquid?",
-        questions:[
-          {question:"Question 1", options:['option a', 'option b'], answer: 'option a'}
-        ],
-        author: { _id:'2', name:'Rohim', designation:'Back-End Developer', email: 'solim@gmail.com', password:'12345', picture:'upload/me.jpg'}
-      }
-    ]
-  }
+  state = store.getAllData();
 
   render(){
     return (
       <BrowserRouter>
         <Header/>
-        <Switch>
-          <Route exact path="/" component={ () => (
-            <main>
-              <div className="quiz-area">
-                <div className="container">
-                  <div className="row">
-                    <div className="col-sm-12">
-                      {this.state.quiz.map((item, key) => {
-                        return <SingleQuiz key={key} author={item.author} quizTitle={item.title} quizDesc={item.description}/>
-                      })}
+          <main>
+            <Switch>
+              <Route exact path="/" component={ () => (
+                <div className="quiz-area">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-sm-12">
+                        {this.state.quiz.map((item, key) => {
+                          return <SingleQuiz key={key} author={item.author} quizTitle={item.title} quizDesc={item.description}/>
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </main>
-          )}/>
+              )}/>
 
-          <Route path="/quiz/:id"/>
-          <Route path="/create-quiz"/>
-        </Switch>
+              <Route path="/profile/:id" component={(props) => {
+                let singleAuthor = this.state.profile.filter((author) => {
+                  if(author._id === props.match.params.id)
+                  return author;
+                })
+                let authorAllQuiz = this.state.quiz.filter((quiz) => {
+                  if(quiz.author._id === props.match.params.id)
+                  return quiz;
+                })
+                return <Profile author={singleAuthor[0]} authorAllQuiz={authorAllQuiz} />
+              }}/>
+
+              <Route path="/quiz/:id"/>
+              <Route path="/create-quiz" component={() => {
+                return <CreateQuiz/>
+              }} />
+            </Switch>
+          </main>
         <Footer/>
       </BrowserRouter>
     )
