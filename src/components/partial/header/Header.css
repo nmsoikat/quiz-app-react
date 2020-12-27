@@ -2,6 +2,9 @@ header {
   background-color: #37bd62;
   margin-bottom: 15px;
 }
+.logo-wrap {
+  padding: 9px 0;
+}
 .logo{
   color: #fff;
   font-size: 25px;

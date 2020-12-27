@@ -1,12 +1,12 @@
 import AuthorProfile from '../author-profile/AuthorProfile'
-import QuizDesc from '../quiz-desc/Quiz-Desc'
+import QuizDesc from '../quiz-desc/QuizDesc'
 
 function SingleQuiz(props){
-  let {quizTitle, quizDesc, author} = props;
+  let {quizId, quizTitle, quizDesc, author} = props;
   return(
     <div className="single-quiz">
       <AuthorProfile author={author}/>
-      <QuizDesc quizTitle={quizTitle} quizDesc={quizDesc}/>
+      <QuizDesc quizId={quizId} quizTitle={quizTitle} quizDesc={quizDesc}/>
   </div>
   )
 }

@@ -24,3 +24,38 @@
   text-align: center;
   line-height: 34px;
 }
+
+.single-question{
+  margin-bottom: 15px;
+}
+.single-question:last-child{
+  margin-bottom: 0;
+}
+.single-question__question {
+  font-size: 22px;
+  text-transform: capitalize;
+  color: green;
+}
+
+.single-question__option {
+  font-size: 20px;
+}
+
+.single-question__option input {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  display: inline-block;
+  line-height: normal;
+  vertical-align: middle;
+}
+.single-question__option label {
+  height: 35px;
+  line-height: 35px;
+}
+
+.single-question__answer {
+  font-size: 18px;
+  color: #555;
+  font-style: italic;
+}

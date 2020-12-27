@@ -1,5 +1,5 @@
 import AuthorProfile from '../author-profile/AuthorProfile'
-import TitleOrBio from '../quiz-desc/Quiz-Desc'
+import TitleOrBio from '../quiz-desc/QuizDesc'
 
 function Profile({author, authorAllQuiz}){
   return (
@@ -17,7 +17,7 @@ function Profile({author, authorAllQuiz}){
       <div className="author-quiz">
         {
           authorAllQuiz.map((quiz) => {
-            return <TitleOrBio quizTitle={quiz.title} quizDesc={quiz.description}/>
+            return <TitleOrBio quizId={quiz._id}  quizTitle={quiz.title} quizDesc={quiz.description}/>
           })
         }
       </div>

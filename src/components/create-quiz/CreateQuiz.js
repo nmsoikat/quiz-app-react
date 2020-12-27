@@ -1,16 +1,18 @@
-import react from 'react';
+import react from 'react'
 import classNames from 'classnames'
 import {v4 as uuidv4} from 'uuid'
 
 import InputBox from '../input/Input'
 import TextArea from '../text-area/TextArea'
+import SingleQA from '../single-qa/SingleQA'
+
 
 class CreateQuiz extends react.Component {
 
   constructor(){
-    super();
+    super()
 
-    this.formRef = react.createRef();
+    this.formRef = react.createRef()
   }
   
   state = {
@@ -22,17 +24,12 @@ class CreateQuiz extends react.Component {
     },
     questions:[
       {
+        _id: uuidv4(),
         question: "dummy question",
         options: [
-          {
-          _id:1,
-          value: "option 1"
-          },
-          {
-          _id:2,
-          value: "option 2"
-          }
-      ],
+          { _id:1,value: "option 1"},
+          {_id:2,value: "option 2"}
+        ],
         answer: "Option1"
       }
     ],
@@ -47,16 +44,16 @@ class CreateQuiz extends react.Component {
   }
 
   onChangeHandler(event){
-    let newQuiz = {...this.state.quizTemp};
-    newQuiz[event.target.name] = event.target.value;
+    let newQuiz = {...this.state.quizTemp}
+    newQuiz[event.target.name] = event.target.value
 
     this.setState({quizTemp: newQuiz})
   }
 
   keyPressHandler = (event) => {
-    // console.log(event.key); // print text
-    // console.log(event.charCode); // work will
-    // console.log(event.keyCode); // always print 0
+    // console.log(event.key) // print text
+    // console.log(event.charCode) // work will
+    // console.log(event.keyCode) // always print 0
     if(event.charCode === 13){
       this.setState({title: false})
     }
@@ -87,12 +84,12 @@ class CreateQuiz extends react.Component {
   }
 
   deleteInputBox(id){
-    // console.log(id);
+    // console.log(id)
     this.setState((prev) => {
       let options = [...prev.optionCount]
 
       options = options.filter((option) => {
-        return id !== option._id;
+        return id !== option._id
       })
 
       return {
@@ -102,51 +99,91 @@ class CreateQuiz extends react.Component {
   }
 
   singleQuestionSubmit = (event) => {
-    event.preventDefault();
-    const form = this.formRef.current;
+    event.preventDefault()
+    const form = this.formRef.current
 
-    let options = [];  // all option
-    let obj = {}; // single question data (question and options and answer)
+    let options = []  // all option
+    let obj = {} // single question data (question and options and answer)
 
-    obj.question = form[0].value; // ADD question
     
-    options.push(form[1].value) // option one // default
-    options.push(form[2].value) // option two // default
+    obj._id = uuidv4()  // ADD Unique ID
+    obj.question = form[0].value // ADD question
+    
+    options.push({_id:uuidv4(), value:form[1].value}) // option one // default
+    options.push({_id:uuidv4(), value:form[2].value}) // option two // default
     if(form[3].name === "options"){
-      options.push(form[3].value) // option three
+      let optionObj = {
+        _id: uuidv4(),
+        value: form[3].value
+      }
+      options.push(optionObj) // option three
     }
     if(form[4].name === "options"){
-      options.push(form[4].value) // option four
-    }
-    obj.options = options; // ADD options
-
-    if(form[3].name === "answer" || form[4].name === "answer" || form[5].name === "answer")
-      obj.answer = form[3].value; // ADD answer
-
-
-    this.setState(prev => {
-      let prev_questions = [...prev.questions];
-      prev_questions.push(obj)
-      return {
-        questions: prev_questions
+      let optionObj = {
+        _id: uuidv4(),
+        value: form[4].value
       }
+      options.push(optionObj) // option four
+    }
+    obj.options = options // ADD options
+
+    let tempAns = null
+    if(form[3].name === "answer") {
+      tempAns = form[3].value
+    } else if(form[4].name === "answer") {
+      tempAns = form[4].value
+    } else{
+      tempAns = form[5].value
+    }
+    // console.log(answer);
+    
+    //  find // value //otherwise undefined
+    if(options.find(opt => opt.value === tempAns)){
+      obj.answer = tempAns // ADD answer
+
+      //Set to state (question, options, and, answer)
+      this.setState(prev => {
+        let prev_questions = [...prev.questions]
+        prev_questions.push(obj)
+        return {
+          questions: prev_questions
+        }
+      })
+    }else{
+      alert('Answer out of options!')
+      return;
+    }
+
+    [...form].map(field => {
+      field.value = ''
     })
 
-    console.log(this.state.questions);
+    // console.log(this.state.questions)
 
-    // console.log(questions);
+    // console.log(questions)
 
-    // console.log(this.formRef.current[0]);
+    // console.log(this.formRef.current[0])
     // [...this.formRef.current].map((field) => {
     //   if(field.type !== "submit"){
-    //     console.log(field);
+    //     console.log(field)
     //   }
     // })
   }
 
-  render() {
-    let {title, description} = this.state.quizTemp;
+  saveQuestion = () => {
+    let completeQuestion = {
+      _id: uuidv4(),
+      ...this.state.quizTemp,
+      questions: this.state.questions,
+      author:{ _id:'2', name:'Rohim', designation:'Back-End Developer', email: 'rohim@gmail.com', password:'12345', picture:'/upload/male-profile-avatar.jpg', 
+      bio:"This letter is to express my interest in the job posted on your website for an experienced, detailed-oriented, front-end web developer. As you'll see, I have six years of hands-on experience efficiently coding websites and applications using modern HTML, CSS, and JavaScript."}
+    }
+    // console.log(completeQuestion);
+    this.props.saveQuestion(completeQuestion);
+  }
 
+  render() {
+    let {title, description} = this.state.quizTemp
     return (
       <div className="create-quiz-wrap">
         <div className="container">
@@ -184,7 +221,7 @@ class CreateQuiz extends react.Component {
             </div>
           </div>
 
-          <div className="create-question-wrap box-style mt-5">
+          <div className="create-question-wrap box-style my-5">
             <form onSubmit={this.singleQuestionSubmit} ref={this.formRef}>
               <div className="question">
                 <InputBox 
@@ -231,10 +268,19 @@ class CreateQuiz extends react.Component {
               <button className="btn btn-success" type="submit">Add to question</button>
             </form>
           </div>
+
+          <div className="show-all-questions box-style">
+            <SingleQA questions={this.state.questions}/>
+          </div>
+
+          <div className="complete-btn my-3 text-right">
+            <button onClick={this.saveQuestion} className="btn btn-warning">Save All</button>
+          </div>
+
         </div>
       </div>
     )
   }
 }
 
-export default CreateQuiz;
+export default CreateQuiz

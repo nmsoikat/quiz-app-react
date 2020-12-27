@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 import Button from '../../button/Button'
 import Nav from '../nav/Nav'
 
@@ -8,7 +10,7 @@ function Header(){
       <div className="container">
         <div className="row">
           <div className="col-md-4">
-            <h2 className="logo">Quiz</h2>
+            <Link className="logo-wrap" to="/"><h2 className="logo">Quiz</h2></Link>
           </div>
           <div className="col-md-8 text-right">
             <Nav />

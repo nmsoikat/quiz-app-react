@@ -1,11 +1,13 @@
 main{
-  height: 93.4vh;
+  min-height: 93.4vh;
 }
 
 @import './single-quiz/SingleQuiz.css';
 @import './partial/header/Header.css';
 @import './partial/nav/Nav.css';
+@import './partial/footer/Footer.css';
 @import './author-profile/AuthorProfile.css';
-@import './quiz-desc/Quiz-Desc.css';
+@import './quiz-desc/QuizDesc.css';
 @import './profile/Profile.css';
-@import './create-quiz/CreateQuiz.css'
+@import './create-quiz/CreateQuiz.css';
+@import './single-qa/SingleQA.css';
